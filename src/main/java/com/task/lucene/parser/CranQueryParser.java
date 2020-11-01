@@ -16,12 +16,12 @@ public class CranQueryParser extends BaseParser {
     }
 
     public List<CranQuery> getParseResult() {
-        List<CranQuery> cranQueries = new ArrayList<CranQuery>();
+        List<CranQuery> cranQueries = new ArrayList<>();
         try {
             String content = readContent();
             if (content != null) {
                 // split data with .I
-                String[] queries = content.split(".I ");
+                String[] queries = content.split("\\.I ");
                 // docArray[0] is empty, so from com.task.lucene.index = 1
                 for (int i = 1; i < queries.length; i++) {
                     String query = queries[i];

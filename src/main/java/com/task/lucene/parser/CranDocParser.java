@@ -24,7 +24,7 @@ public class CranDocParser extends BaseParser {
         String content = readContent();
         if (content != null && content.length() > 0) {
             // split data with .I
-            String[] docArray = content.split(".I ");
+            String[] docArray = content.split("\\.I ");
             // docArray[0] is empty, so from com.task.lucene.index = 1
             for (int i = 1; i < docArray.length; i++) {
                 String item = docArray[i];
