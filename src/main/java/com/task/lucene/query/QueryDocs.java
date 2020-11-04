@@ -3,7 +3,6 @@ package com.task.lucene.query;
 import com.task.lucene.model.CranQuery;
 import com.task.lucene.parser.CranQueryParser;
 import org.apache.lucene.analysis.Analyzer;
-
 import org.apache.lucene.document.Document;
 import org.apache.lucene.index.DirectoryReader;
 import org.apache.lucene.index.IndexReader;
@@ -22,7 +21,6 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 /**

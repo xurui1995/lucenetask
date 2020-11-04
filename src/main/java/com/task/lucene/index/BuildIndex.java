@@ -3,7 +3,6 @@ package com.task.lucene.index;
 import com.task.lucene.model.CranDoc;
 import com.task.lucene.parser.CranDocParser;
 import org.apache.lucene.analysis.Analyzer;
-import org.apache.lucene.analysis.standard.StandardAnalyzer;
 import org.apache.lucene.document.Document;
 import org.apache.lucene.document.Field;
 import org.apache.lucene.document.StringField;
@@ -13,6 +12,7 @@ import org.apache.lucene.index.IndexWriterConfig;
 import org.apache.lucene.store.Directory;
 import org.apache.lucene.store.FSDirectory;
 
+import java.io.File;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
@@ -33,8 +33,13 @@ public class BuildIndex {
         try {
             // init Directory
             String indexPath = analyzer.getClass().getSimpleName() + "_" + INDEX_PATH;
-            Directory directory = FSDirectory.open(Paths.get(indexPath));
 
+            if (new File(indexPath).exists()) {
+                System.out.println("------You already built the index------");
+                return;
+            }
+
+            Directory directory = FSDirectory.open(Paths.get(indexPath));
             // init IndexWriterConfig
             IndexWriterConfig config = new IndexWriterConfig(analyzer);
             config.setOpenMode(IndexWriterConfig.OpenMode.CREATE);

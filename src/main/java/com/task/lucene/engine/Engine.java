@@ -43,7 +43,7 @@ public class Engine {
 
     public static String tips = "please check you command\n" +
             "build index(StandardAnalyzer or EnglishAnalyzer):\n" +
-            "java -jar target/lucenetask-1.0.jar index -a {Analyzer}\n"+
+            "java -jar target/lucenetask-1.0.jar index -a {Analyzer}\n" +
             "Analyzer can be Standard or English\n" +
             "start query(Classic or BM25):\n" +
             "java -jar target/lucenetask-1.0.jar query -a {Analyzer} -s {Similarity}\n" +
@@ -57,7 +57,7 @@ public class Engine {
         }
         if ("index".equalsIgnoreCase(args[0])) {
             handleBuildIndex(args);
-        } else if("query".equalsIgnoreCase(args[0])) {
+        } else if ("query".equalsIgnoreCase(args[0])) {
             handleQuery(args);
         } else {
             System.out.println(tips);
@@ -66,7 +66,7 @@ public class Engine {
 
     // handle query form command
     private static void handleQuery(String[] args) {
-        if (args== null || args.length != 5 || !"-a".equalsIgnoreCase(args[1]) || !"-s".equalsIgnoreCase(args[3])) {
+        if (args == null || args.length != 5 || !"-a".equalsIgnoreCase(args[1]) || !"-s".equalsIgnoreCase(args[3])) {
             System.out.println(tips);
             return;
         }
@@ -76,7 +76,7 @@ public class Engine {
     // get Similarity form command
     private static Similarity getSimilarity(String s) {
         if (BM25.equalsIgnoreCase(s)) {
-            return  new BM25Similarity();
+            return new BM25Similarity();
         } else if (CLASSIC.equalsIgnoreCase(s)) {
             return new ClassicSimilarity();
         } else {
@@ -100,7 +100,7 @@ public class Engine {
     public static Analyzer getAnalyzer(String a) {
         if (STANDARD_ANALYZER.equalsIgnoreCase(a)) {
             // EnglishAnalyzer.ENGLISH_STOP_WORDS_SET is not enough, so choose custom STOP_WORDS
-            return  new StandardAnalyzer(new CharArraySet(Arrays.asList(STOP_WORDS), true));
+            return new StandardAnalyzer(new CharArraySet(Arrays.asList(STOP_WORDS), true));
         } else if (ENGLISH_ANALYZER.equalsIgnoreCase(a)) {
             return new EnglishAnalyzer(new CharArraySet(Arrays.asList(STOP_WORDS), true));
         } else {
