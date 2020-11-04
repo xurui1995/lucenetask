@@ -13,7 +13,7 @@ After finshing the queries, the engine will output a result file, user can use `
 -  (Analyzer can be Standard or English)
 -  e.g. `java -jar target/lucenetask-1.0.jar index -a English`
 
-# Start to query
+## Start to query
 `java -jar target/lucenetask-1.0.jar query -a {Analyzer} -s {Similarity}`
 - (Analyzer can be Standard or English, Similarity can be BM25 or Classic)
 - e.g. `java -jar target/lucenetask-1.0.jar query -a English -s BM25`  
@@ -22,3 +22,15 @@ After finshing the queries, the engine will output a result file, user can use `
 `trec_eval-9.0.7/trec_eval corpus/QRelsCorrectedforTRECeval {Results.txt}`
 - after finishing query, you can see the result file name in the terminal, name format is `{Analyzer}{Similarity}Results.txt`
 - e.g. `trec_eval-9.0.7/trec_eval corpus/QRelsCorrectedforTRECeval EnglishAnalyzerBM25SimilarityResults.txt `
+
+## Code components
+- engine package
+  - Includes Engine.class which is Main Class of project, handle the user's commands
+- index package
+  - built indexs
+- model package
+  - the model objects of Cran document and Cran query
+- model parser
+  - parse the original file of cran.all.1400 and cran.qry
+- query
+  - start query
