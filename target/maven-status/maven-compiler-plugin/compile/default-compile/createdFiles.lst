@@ -1,8 +1,0 @@
-com/task/lucene/parser/BaseParser.class
-com/task/lucene/model/CranQuery.class
-com/task/lucene/engine/Engine.class
-com/task/lucene/index/BuildIndex.class
-com/task/lucene/query/QueryDocs.class
-com/task/lucene/parser/CranQueryParser.class
-com/task/lucene/model/CranDoc.class
-com/task/lucene/parser/CranDocParser.class

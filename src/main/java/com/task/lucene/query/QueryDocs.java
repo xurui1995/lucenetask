@@ -2,8 +2,8 @@ package com.task.lucene.query;
 
 import com.task.lucene.model.CranQuery;
 import com.task.lucene.parser.CranQueryParser;
-import org.apache.lucene.analysis.CharArraySet;
-import org.apache.lucene.analysis.standard.StandardAnalyzer;
+import org.apache.lucene.analysis.Analyzer;
+
 import org.apache.lucene.document.Document;
 import org.apache.lucene.index.DirectoryReader;
 import org.apache.lucene.index.IndexReader;
@@ -17,6 +17,7 @@ import org.apache.lucene.search.similarities.Similarity;
 import org.apache.lucene.store.Directory;
 import org.apache.lucene.store.FSDirectory;
 
+import java.io.File;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -32,38 +33,28 @@ public class QueryDocs {
     public static final String QUERY_PATH = "corpus/cran.qry";
     public static final String RESULT_PATH = "Results.txt";
 
-    // https://gist.github.com/sebleier/554280
-    // NLTK's list of english stop words
-    public static final String[] STOP_WORDS =
-            {"i", "me", "my", "myself", "we", "our", "ours", "ourselves", "you", "your", "yours",
-                    "yourself", "yourselves", "he", "him", "his", "himself", "she", "her", "hers",
-                    "herself", "it", "its", "itself", "they", "them", "their", "theirs", "themselves",
-                    "what", "which", "who", "whom", "this", "that", "these", "those", "am", "is", "are",
-                    "was", "were", "be", "been", "being", "have", "has", "had", "having", "do", "does",
-                    "did", "doing", "a", "an", "the", "and", "but", "if", "or", "because", "as", "until",
-                    "while", "of", "at", "by", "for", "with", "about", "against", "between", "into", "through",
-                    "during", "before", "after", "above", "below", "to", "from", "up", "down", "in", "out", "on",
-                    "off", "over", "under", "again", "further", "then", "once", "here", "there", "when", "where",
-                    "why", "how", "all", "any", "both", "each", "few", "more", "most", "other", "some", "such",
-                    "no", "nor", "not", "only", "own", "same", "so", "than", "too", "very", "s", "t", "can",
-                    "will", "just", "don", "should", "now"};
-
     // start to handle queries from cran.qry
-    public static void startQuery(Similarity similarity) {
+    public static void startQuery(Analyzer analyzer, Similarity similarity) {
         System.out.println("------startQuery------");
 
+        if (analyzer == null) {
+            System.out.println("analyzer is empty");
+            return;
+        }
         if (similarity == null) {
             System.out.println("similarity is empty");
             return;
         }
         try {
-            // init analyzer
 
-            // EnglishAnalyzer.ENGLISH_STOP_WORDS_SET is not enough, so choose custom STOP_WORDS
-            StandardAnalyzer analyzer = new StandardAnalyzer(new CharArraySet(Arrays.asList(STOP_WORDS), true));
+            String indexPath = analyzer.getClass().getSimpleName() + "_" + INDEX_PATH;
 
+            if (!new File(indexPath).exists()) {
+                System.out.println("index directory does not exist, please build index firstly");
+                return;
+            }
             // Open the index fold
-            Directory directory = FSDirectory.open(Paths.get(INDEX_PATH));
+            Directory directory = FSDirectory.open(Paths.get(indexPath));
 
             // init reader
             IndexReader reader = DirectoryReader.open(directory);
@@ -107,7 +98,8 @@ public class QueryDocs {
             reader.close();
             System.out.println("------EndQuery------");
             // output the results
-            outputResult(queryResults, similarity.getClass().getSimpleName() + RESULT_PATH);
+            String path = analyzer.getClass().getSimpleName() + similarity.getClass().getSimpleName() + RESULT_PATH;
+            outputResult(queryResults, path);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -132,7 +124,7 @@ public class QueryDocs {
     }
 
     // use MultiFieldQueryParser to get the Query
-    private static Query getQuery(StandardAnalyzer analyzer, String text) throws ParseException {
+    private static Query getQuery(Analyzer analyzer, String text) throws ParseException {
         if (analyzer == null) {
             return null;
         }

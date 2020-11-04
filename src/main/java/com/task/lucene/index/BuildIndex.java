@@ -25,13 +25,15 @@ public class BuildIndex {
     public static final String DOC_PATH = "corpus/cran.all.1400";
 
 
-    public static void startBuildIndex() {
+    public static void startBuildIndex(Analyzer analyzer) {
+        if (analyzer == null) {
+            return;
+        }
         System.out.println("------StartBuildIndex------");
-
         try {
-            Analyzer analyzer = new StandardAnalyzer();
             // init Directory
-            Directory directory = FSDirectory.open(Paths.get(INDEX_PATH));
+            String indexPath = analyzer.getClass().getSimpleName() + "_" + INDEX_PATH;
+            Directory directory = FSDirectory.open(Paths.get(indexPath));
 
             // init IndexWriterConfig
             IndexWriterConfig config = new IndexWriterConfig(analyzer);
