@@ -6,7 +6,7 @@ After finshing the queries, the engine will output a result file, user can use `
 `Java 1.8` `Apache Lucene 8.6.3`  `trec_eval-9.0.7` `Apache Maven 3.6.0`
 
 ## Compile and package
-`mvn clean compile package`
+`mvn clean package`
 
 ## Build the index (you can skip this step, the indexs are already built)
 `java -jar target/lucenetask-1.0.jar index -a {Analyzer}`
@@ -33,4 +33,4 @@ After finshing the queries, the engine will output a result file, user can use `
 - model parser
   - parse the original file of cran.all.1400 and cran.qry
 - query
-  - start query
+  - handle queries
