@@ -1,0 +1,8 @@
+/home/ubuntu/lucenetask/src/main/java/com/task/lucene/parser/BaseParser.java
+/home/ubuntu/lucenetask/src/main/java/com/task/lucene/index/BuildIndex.java
+/home/ubuntu/lucenetask/src/main/java/com/task/lucene/model/CranQuery.java
+/home/ubuntu/lucenetask/src/main/java/com/task/lucene/engine/Engine.java
+/home/ubuntu/lucenetask/src/main/java/com/task/lucene/parser/CranDocParser.java
+/home/ubuntu/lucenetask/src/main/java/com/task/lucene/query/QueryDocs.java
+/home/ubuntu/lucenetask/src/main/java/com/task/lucene/parser/CranQueryParser.java
+/home/ubuntu/lucenetask/src/main/java/com/task/lucene/model/CranDoc.java
