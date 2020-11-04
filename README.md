@@ -1,5 +1,5 @@
 # Lucene Task
-A java search engine based on the data `corpus/cran.all.1400`, user can choose Analyzer and Similarity to fininsh queries`corpus/cran.qry`. 
+A Java search engine based on the data `corpus/cran.all.1400`, user can choose Analyzer and Similarity to fininsh queries`corpus/cran.qry`. 
 After finshing the queries, the engine will output a result file, user can use trec_eval tool to finish evaluation.
 
 ## Environment 
