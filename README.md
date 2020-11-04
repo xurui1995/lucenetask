@@ -8,7 +8,7 @@ After finshing the queries, the engine will output a result file, user can use t
 ## Compile and package
 `mvn clean compile package`
 
-## Build the index (you can skip this step, the indexs are already be built)
+## Build the index (you can skip this step, the indexs are already built)
 `java -jar target/lucenetask-1.0.jar index -a {Analyzer}`
 -  (Analyzer can be Standard or English)
 -  e.g. `java -jar target/lucenetask-1.0.jar index -a English`
