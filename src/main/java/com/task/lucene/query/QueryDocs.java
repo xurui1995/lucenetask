@@ -73,10 +73,8 @@ public class QueryDocs {
             System.out.println("query.......");
             List<String> queryResults = new ArrayList<String>();
             for (CranQuery cranQuery : cranQueries) {
-                // handle the text, remove stop words
-                String text = handleQueryText(cranQuery.getQueryText());
                 // get the query
-                Query query = getQuery(analyzer, text);
+                Query query = getQuery(analyzer, cranQuery.getQueryText());
                 // get the search results
                 TopDocs results = searcher.search(query, 1400);
                 ScoreDoc[] scoreDocs = results.scoreDocs;
@@ -127,14 +125,8 @@ public class QueryDocs {
             return null;
         }
         MultiFieldQueryParser multiFieldQP = new MultiFieldQueryParser(new String[]{"title", "author", "bibliography", "words"}, analyzer);
+        // the query text has 3 "?" characters
+        multiFieldQP.setAllowLeadingWildcard(true);
         return multiFieldQP.parse(text);
-    }
-
-    // remove special characters
-    private static String handleQueryText(String queryText) {
-        if (queryText != null) {
-            queryText = queryText.replace("?", "");
-        }
-        return queryText;
     }
 }
