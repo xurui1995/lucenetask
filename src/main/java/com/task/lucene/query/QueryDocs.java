@@ -124,9 +124,9 @@ public class QueryDocs {
         if (analyzer == null) {
             return null;
         }
-        MultiFieldQueryParser multiFieldQP = new MultiFieldQueryParser(new String[]{"title", "author", "bibliography", "words"}, analyzer);
+        MultiFieldQueryParser queryParse = new MultiFieldQueryParser(new String[]{"title", "author", "bibliography", "words"}, analyzer);
         // the query text has 3 "?" characters
-        multiFieldQP.setAllowLeadingWildcard(true);
-        return multiFieldQP.parse(text);
+        queryParse.setAllowLeadingWildcard(true);
+        return queryParse.parse(text);
     }
 }
