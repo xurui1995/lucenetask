@@ -3,7 +3,7 @@ A Java search engine based on the data `corpus/cran.all.1400`, user can choose A
 After finshing the queries, the engine will output a result file, user can use `trec_eval` tool to finish evaluation.
 
 ## Environment 
-`Java 1.8` `Apache Lucene 8.6.3`  `trec_eval-9.0.7` `Apache Maven 3.6.0`
+`Java 1.8` `Apache Lucene 8.6.2`  `trec_eval-9.0.7` `Apache Maven 3.6.0`
 
 ## Compile and package
 `mvn clean package`
